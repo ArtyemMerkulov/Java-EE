@@ -6,38 +6,6 @@
 
   <display-name>Archetype Created Web Application</display-name>
 
-<!-- servlets -->
-  <servlet>
-    <servlet-name>ErrorHandler</servlet-name>
-    <servlet-class>com.artyemmerkylov.errors.ErrorHandler</servlet-class>
-  </servlet>
-
-  <servlet>
-    <servlet-name>NotFoundError</servlet-name>
-    <servlet-class>com.artyemmerkylov.errors.NotFoundError</servlet-class>
-  </servlet>
-
-  <servlet>
-    <servlet-name>ForbiddenError</servlet-name>
-    <servlet-class>com.artyemmerkylov.errors.ForbiddenError</servlet-class>
-  </servlet>
-
-  <!-- servlets mapping-->
-  <servlet-mapping>
-    <servlet-name>ErrorHandler</servlet-name>
-    <url-pattern>/ErrorHandler</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>NotFoundError</servlet-name>
-    <url-pattern>/NotFoundError</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>ForbiddenError</servlet-name>
-    <url-pattern>/ForbiddenError</url-pattern>
-  </servlet-mapping>
-
   <!-- error pages-->
   <error-page>
     <error-code>500</error-code>

@@ -5,7 +5,8 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/forbidden", "/footer"})
+@WebFilter(urlPatterns = {"/forbidden", "/footer", "/NotFoundError",
+        "/ForbiddenError", "/ErrorHandler"})
 public class AccessFilter implements Filter {
 
     private final String appPath = "/homework2";
@@ -26,8 +27,10 @@ public class AccessFilter implements Filter {
             req.setAttribute("uri", appPath + "/forbidden");
 
             req.getRequestDispatcher("/ForbiddenError").forward(req, res);
-//        req.getRequestDispatcher("/forbidden").forward(req, res); // для проверки
-        } else if (reqUri.startsWith(appPath + "/footer")) {
+        } else if (reqUri.startsWith(appPath + "/footer") ||
+                reqUri.startsWith(appPath + "/NotFoundError") ||
+                reqUri.startsWith(appPath + "/ForbiddenError") ||
+                reqUri.startsWith(appPath + "/ErrorHandler")) {
             req.setAttribute("javax.servlet.error.status_code", 404);
             req.setAttribute("javax.servlet.error.request_uri", reqUri);
 

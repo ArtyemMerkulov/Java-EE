@@ -1,12 +1,14 @@
 package com.artyemmerkylov.errors;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+@WebServlet(name = "ErrorHandler", urlPatterns = "/ErrorHandler")
 public class ErrorHandler extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -29,7 +31,6 @@ public class ErrorHandler extends HttpServlet {
                 "       <div>The status code: " + statusCode + "</div>\n" +
                 "       <div>The request URI: " + requestUri + "</div>\n" +
                 "       <div>The exception message: " + throwable.getMessage() + "</div>\n" +
-                "       <div>" + System.getProperty("user.dir") + "</div>\n" +
                 "    </body>\n" +
                 "</html>");
     }
