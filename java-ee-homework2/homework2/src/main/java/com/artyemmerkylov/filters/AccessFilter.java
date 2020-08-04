@@ -21,7 +21,7 @@ public class AccessFilter implements Filter {
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain filterChain) throws IOException, ServletException {
         String reqUri = ((HttpServletRequest) req).getRequestURI();
-        System.out.println(reqUri);
+        
         if (reqUri.startsWith(appPath + "/forbidden")) {
             req.setAttribute("status_code", 403);
             req.setAttribute("uri", appPath + "/forbidden");
