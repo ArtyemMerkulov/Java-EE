@@ -29,7 +29,7 @@
           <p class="s_model"><c:out value="${product.description}"/></p>
           <p class="s_price"><span class="s_currency s_before">$</span><c:out value="${product.price}"/></p>
           <p class="s_rating s_rating_5"><span style="width: 60%;" class="s_percent"></span></p>
-          <a class="s_button_add_to_cart" href="/homework3/product/<c:out value="${product.id}"/>"><span class="s_icon_16"><span class="s_icon"></span>Add to Cart</span></a>
+          <a class="s_button_add_to_cart" href="/homework3/cart/add?id=<c:out value="${product.id}"/>"><span class="s_icon_16"><span class="s_icon"></span>Add to Cart</span></a>
         </div>
 
         <c:if test="${counter != 3}">

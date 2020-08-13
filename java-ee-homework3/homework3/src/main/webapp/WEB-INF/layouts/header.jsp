@@ -45,8 +45,9 @@
                     </ul>
                 </div>
 
+                <c:set var="cartPrice" scope="request" value="${requestScope.totalPrice}" />
                 <div id="cart_menu" class="s_nav">
-                    <a href="/homework3/cart"><span class="s_icon"></span> <small class="s_text">Cart</small><span class="s_grand_total s_main_color">$0.00</span></a>
+                    <a href="/homework3/cart"><span class="s_icon"></span> <small class="s_text">Cart</small><span class="s_grand_total s_main_color">$<c:out value="${cartPrice.totalPrice}"/></span></a>
                 </div>
             </div>
         </div>

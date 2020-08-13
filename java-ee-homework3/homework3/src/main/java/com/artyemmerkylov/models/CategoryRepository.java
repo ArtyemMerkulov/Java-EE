@@ -65,14 +65,12 @@ public class CategoryRepository {
 
     private void createTableIfNotExists(Connection conn) throws SQLException {
         String query = "CREATE TABLE IF NOT EXISTS categories (\n" +
-                "    id          INTEGER       AUTO_INCREMENT\n" +
-                "                              UNIQUE\n" +
-                "                              NOT NULL,\n" +
-                "    name        VARCHAR (40)  UNIQUE\n" +
-                "                              NOT NULL,\n" +
-                "    description VARCHAR (255) NOT NULL\n" +
-                "                              DEFAULT (''),\n" +
-                "                              PRIMARY KEY (id)\n" +
+                "  id           int             NOT NULL AUTO_INCREMENT,\n" +
+                "  name         varchar(40)     NOT NULL,\n" +
+                "  description  varchar(255)    NOT NULL DEFAULT (''),\n" +
+                "                               PRIMARY KEY (id),\n" +
+                "                               UNIQUE KEY id (id),\n" +
+                "                               UNIQUE KEY name (name)\n" +
                 ");";
 
         try (Statement stmt = conn.createStatement()) {

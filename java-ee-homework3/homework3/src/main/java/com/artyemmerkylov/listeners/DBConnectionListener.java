@@ -1,7 +1,10 @@
 package com.artyemmerkylov.listeners;
 
+import com.artyemmerkylov.models.Cart;
 import com.artyemmerkylov.models.CategoryRepository;
+import com.artyemmerkylov.models.OrderRepository;
 import com.artyemmerkylov.models.ProductRepository;
+import com.artyemmerkylov.utils.TotalPrice;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,6 +20,8 @@ import java.sql.SQLException;
 public class DBConnectionListener implements ServletContextListener {
 
     private static final Logger logger = LoggerFactory.getLogger(DBConnectionListener.class);
+    private static Cart cart = new Cart();
+    private static TotalPrice totalPrice = new TotalPrice();
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
@@ -35,6 +40,9 @@ public class DBConnectionListener implements ServletContextListener {
             sc.setAttribute("connection", conn);
             sc.setAttribute("productRepository", new ProductRepository(conn));
             sc.setAttribute("categoryRepository", new CategoryRepository(conn));
+            sc.setAttribute("orderRepository", new OrderRepository(conn));
+            sc.setAttribute("cart", cart);
+            sc.setAttribute("totalPrice", totalPrice);
         } catch (SQLException ex) {
             logger.error("Error connection database");
             logger.error(ex.getMessage());
