@@ -9,7 +9,7 @@
       <div id="breadcrumbs" class="grid_12">
         <a href="/homework3">Home</a>
         &gt;
-        <a href="/homewrok3/category/"><c:out value="${requestScope.categoryName}"/></a>
+        <a href="/homework3/category/<c:out value="${requestScope.categoryName}"/>"><c:out value="${requestScope.categoryName}"/></a>
       </div>
       <h1><c:out value="${requestScope.categoryName}"/></h1>
     </div>

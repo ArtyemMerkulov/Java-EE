@@ -102,7 +102,9 @@ public class CartController extends HttpServlet {
                 try {
                     orderRepository.createOrder(cart);
                     orderRepository.getProductsInCart(cart).forEach(product -> System.out.println("Prod: " + product.getId()));
+
                     cart.clear();
+                    totalPrice.setTotalPrice(new BigDecimal(0));
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                 }
