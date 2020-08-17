@@ -1,0 +1,102 @@
+<html lang="en"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:primefaces.p="http://primefaces.org/ui">
+
+<ui:include src="/WEB-INF/layouts/admin/header.xhtml" />
+
+<h:body>
+
+    <ui:include src="/WEB-INF/layouts/admin/navigation.xhtml" />
+
+    <div class="container">
+        <div class="row py-2">
+            <div class="col-12">
+                <h:form id="orderForm">
+                    <div class="form-group">
+                        <h:message for="buyerName" style="color:red" />
+                        <h:outputLabel value="Buyer name"/>
+                        <h:inputText id="buyerName"
+                                     value="#{adminOrderController.order.buyerName}"
+                                     styleClass="form-control"
+                                     placeholder="Enter buyer name">
+                            <f:validateLength minimum="5" maximum="100" />
+                        </h:inputText>
+                    </div>
+                    <div class="form-group">
+                        <h:message for="phone" style="color:red" />
+                        <h:outputLabel value="Phone"/>
+                        <h:inputText id="phone"
+                                     styleClass="form-control"
+                                     value="#{adminOrderController.order.phone}"
+                                     placeholder="Enter phone: +7 (999) 999-99-99">
+                            <f:validateLength minimum="14" maximum="20" />
+                            <f:validator validatorId="phoneValidator" />
+                        </h:inputText>
+                    </div>
+                    <div class="form-group">
+                        <h:message for="details" style="color:red" />
+                        <h:outputLabel value="Details"/>
+                        <h:inputText id="details"
+                                     value="#{adminOrderController.order.details}"
+                                     styleClass="form-control"
+                                     placeholder="Enter price">
+                            <f:validateLength maximum="255" />
+                        </h:inputText>
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel value="Total price"/>
+                        <h:outputLabel styleClass="form-control" id="totalPrice" value="#{adminOrderController.order.totalPrice}" />
+                    </div>
+
+                    <h:panelGroup id="orderProductsPanel" layout="block" class="col-12">
+                        <h:dataTable value="#{adminOrderController.order.purchaseList}"
+                                     var="purchase"
+                                     styleClass="table table-bordered my-2">
+                            <h:column>
+                                <f:facet name="header">Id</f:facet>
+                                #{purchase.product.id}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Product image</f:facet>
+                                <h:graphicImage url="#{purchase.product.img}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Product name</f:facet>
+                                #{purchase.product.name}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Product description</f:facet>
+                                #{purchase.product.description}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Product price</f:facet>
+                                #{purchase.product.price}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Products amount</f:facet>
+                                #{purchase.amount}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Action</f:facet>
+                                <h:commandButton value="Delete" styleClass="btn btn-danger"
+                                                 action="#{adminOrderController.deleteProduct(adminOrderController.order, purchase.product)}">
+                                    <f:ajax event="click" render=":orderForm:orderProductsPanel totalPrice"/>
+                                </h:commandButton>
+                            </h:column>
+                        </h:dataTable>
+                    </h:panelGroup>
+
+                    <h:commandButton value="Submit" styleClass="btn btn-primary" action="#{adminOrderController.saveOrder()}"/>
+                </h:form>
+            </div>
+        </div>
+    </div>
+
+    <ui:include src="/WEB-INF/layouts/admin/footer.xhtml" />
+
+</h:body>
+
+</html>
