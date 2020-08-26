@@ -1,0 +1,48 @@
+<html lang="en"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:primefaces.p="http://primefaces.org/ui">
+
+<ui:include src="/WEB-INF/layouts/admin/header.xhtml" />
+
+<h:body>
+
+    <ui:include src="/WEB-INF/layouts/admin/navigation.xhtml" />
+
+    <div class="container">
+        <div class="row py-2">
+            <div class="col-12">
+                <h:form id="categoryForm">
+                    <div class="form-group">
+                        <h:message for="name" style="color:red" />
+                        <h:outputLabel value="Name"/>
+                        <h:inputText styleClass="form-control"
+                                     id="name"
+                                     value="#{adminCategoryController.category.name}"
+                                     placeholder="Enter name">
+                            <f:validateLength minimum="5" maximum="40" />
+                        </h:inputText>
+                    </div>
+                    <div class="form-group">
+                        <h:message for="description" style="color:red" />
+                        <h:outputLabel value="Description"/>
+                        <h:inputText styleClass="form-control"
+                                     id="description"
+                                     value="#{adminCategoryController.category.description}"
+                                     placeholder="Enter description">
+                            <f:validateLength maximum="255" />
+                        </h:inputText>
+                    </div>
+                    <h:commandButton value="Submit" styleClass="btn btn-primary" action="#{adminCategoryController.saveCategory()}"/>
+                </h:form>
+            </div>
+        </div>
+    </div>
+
+    <ui:include src="/WEB-INF/layouts/admin/footer.xhtml" />
+
+</h:body>
+
+</html>

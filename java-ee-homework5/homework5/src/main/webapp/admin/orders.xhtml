@@ -1,0 +1,58 @@
+<html lang="en"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:include src="/WEB-INF/layouts/admin/header.xhtml" />
+
+<h:body>
+
+    <ui:include src="/WEB-INF/layouts/admin/navigation.xhtml" />
+
+    <div class="container">
+        <div class="row py-2">
+            <h:form id="ordersForm">
+                <div class="col-12">
+                    <h:dataTable value="#{adminOrderController.allOrders}"
+                                 styleClass="table table-bordered my-2"
+                                 var="order">
+                        <h:column>
+                            <f:facet name="header">Id</f:facet>
+                            #{order.id}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Buyer Name</f:facet>
+                            #{order.buyerName}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Phone</f:facet>
+                            #{order.phone}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Details</f:facet>
+                            #{order.details}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Total Price</f:facet>
+                            #{order.totalPrice}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Action</f:facet>
+                            <h:commandButton value="Edit" styleClass="btn btn-success"
+                                             action="#{adminOrderController.editOrder(order)}"/>
+                            <h:commandButton value="Delete" styleClass="btn btn-danger"
+                                             action="#{adminOrderController.deleteOrder(order)}">
+                                <f:ajax event="click" render="ordersForm"/>
+                            </h:commandButton>
+                        </h:column>
+                    </h:dataTable>
+                </div>
+            </h:form>
+        </div>
+    </div>
+
+    <ui:include src="/WEB-INF/layouts/admin/footer.xhtml" />
+
+</h:body>
+
+</html>
