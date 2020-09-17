@@ -1,0 +1,63 @@
+<html lang="en"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:include src="/WEB-INF/layouts/admin/header.xhtml" />
+
+<h:body>
+
+    <ui:include src="/WEB-INF/layouts/admin/navigation.xhtml" />
+
+    <div class="container">
+        <div class="row py-2">
+            <h:form id="positionForm">
+                <div class="col-12">
+                    <h:dataTable value="#{adminCartController.allPositions}"
+                                 styleClass="table table-bordered my-2"
+                                 var="position">
+                        <h:column>
+                            <f:facet name="header">Total</f:facet>
+                            #{position.total}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Id</f:facet>
+                            #{position.product.id}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Name</f:facet>
+                            #{position.product.name}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Description</f:facet>
+                            #{position.product.description}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Price</f:facet>
+                            #{position.product.price}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Category</f:facet>
+                            #{position.product.categoryName}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Action</f:facet>
+                            <h:commandButton value="Delete" styleClass="btn btn-danger"
+                                             action="#{adminCartController.deletePosition(position.product.id)}">
+                                <f:ajax event="click" render="positionForm"/>
+                            </h:commandButton>
+                        </h:column>
+                    </h:dataTable>
+                    <div class="form-group">
+                        <h:outputLabel value="Итого: #{adminCartController.getTotalPrice()}"/>
+                    </div>
+                </div>
+            </h:form>
+        </div>
+    </div>
+
+    <ui:include src="/WEB-INF/layouts/admin/footer.xhtml" />
+
+</h:body>
+
+</html>
