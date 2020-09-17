@@ -1,0 +1,55 @@
+<html lang="en"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:include src="/WEB-INF/layouts/admin/header.xhtml" />
+
+<h:body>
+
+    <ui:include src="/WEB-INF/layouts/admin/navigation.xhtml" />
+
+    <div class="container">
+        <div class="row py-2">
+            <h:form id="categoriesForm">
+                <div class="col-12">
+                    <h:commandButton value="Add category" styleClass="btn btn-primary"
+                                     action="#{adminCategoryController.createCategory()}"/>
+                </div>
+
+                <div class="col-12">
+                    <h:dataTable value="#{adminCategoryController.allCategories}"
+                                 styleClass="table table-bordered my-2"
+                                 var="category">
+                        <h:column>
+                            <f:facet name="header">Id</f:facet>
+                            #{category.id}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Name</f:facet>
+                            #{category.name}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Description</f:facet>
+                            #{category.description}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Action</f:facet>
+                            <h:commandButton value="Edit" styleClass="btn btn-success"
+                                             action="#{adminCategoryController.editCategory(category)}"/>
+                            <h:commandButton value="Delete" styleClass="btn btn-danger"
+                                             action="#{adminCategoryController.deleteCategory(category)}">
+                                <f:ajax event="click" render="categoriesForm"/>
+                            </h:commandButton>
+                        </h:column>
+                    </h:dataTable>
+                </div>
+            </h:form>
+        </div>
+    </div>
+
+    <ui:include src="/WEB-INF/layouts/admin/footer.xhtml" />
+
+</h:body>
+
+</html>
