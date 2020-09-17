@@ -1,0 +1,11 @@
+# 1. creating datasource section in standalone.xml config
+data-source add \
+   --jndi-name=java:/jboss/datasources/MySQLDS \
+   --name=MySQLDS \
+   --connection-url=jdbc:mysql://localhost:3306/shop?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC \
+   --driver-name=mysql \
+   --user-name=shop_admin \
+   --password=password
+
+# 2. restarting Wildfly server
+:reload
